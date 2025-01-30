@@ -128,13 +128,10 @@ fun PersonalAreaScreen(onBackPress: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Личный кабинет", style = MaterialTheme.typography.headlineLarge)
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = onBackPress) {
-            Text("Назад")
+
         }
     }
-}
+
 
 @Preview(showBackground = true)
 @Composable
