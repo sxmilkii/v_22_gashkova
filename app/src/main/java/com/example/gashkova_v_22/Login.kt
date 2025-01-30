@@ -84,11 +84,11 @@ fun MainContent(
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
                 .border(
-                    BorderStroke(2.dp, Color(0x80BEBEBE)),
+                    BorderStroke(2.dp, Color(0xFFE30611)),
                     shape = RoundedCornerShape(16.dp)
                 )
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFFF5F5F5)),
+                .background(Color.White),
         )
 
         TextField(
@@ -99,16 +99,16 @@ fun MainContent(
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
                 .border(
-                    BorderStroke(2.dp, Color(0x80BEBEBE)),
+                    BorderStroke(2.dp, Color(0xFFE30611)),
                     shape = RoundedCornerShape(16.dp)
                 )
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFFF5F5F5)),
+                .background(Color.White),
         )
 
         Button(
             onClick = onLoginPress, // Переход на PersonalArea
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5630)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE30611)),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
