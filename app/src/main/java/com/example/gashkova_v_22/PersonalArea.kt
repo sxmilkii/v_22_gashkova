@@ -33,7 +33,7 @@ class PersonalArea : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BusinessCallScreen(username = "Ваше Имя")
+            BusinessCallScreen(username = "Гость") // Или любое другое значение по умолчанию
         }
     }
 }
@@ -115,14 +115,14 @@ fun BusinessCallScreen(username: String) {
                     .weight(1f)
                     .padding(start = 8.dp)
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color(0xFFE30611)) // Красный фон
+                    .background(Color(0xFFE30610)) // Красный фон
                     .padding(16.dp)
             ) {
                 Column {
                     Text(text = "Входящие мин.", fontSize = 14.sp, color = Color.White)
+                    // Добавьте нужный ресурс для иконки входящих
                     Image(
                         painter = painterResource(id = R.drawable.iconn), // Замените на ваш ресурс
-
                         contentDescription = "Incoming Icon",
                         modifier = Modifier.size(48.dp) // Размер изображения
                     )
@@ -137,24 +137,5 @@ fun BusinessCallScreen(username: String) {
             color = Color(0xFFE30611),
             modifier = Modifier.padding(vertical = 8.dp)
         )
-
-        // Кнопка
-        Button(
-            onClick = { /* Ваш код обработки клика */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp)
-                .clip(RoundedCornerShape(16.dp)),
-            colors = ButtonDefaults.buttonColors(Color(0xFFE30611)) // Красный фон кнопки
-        ) {
-            Text(text = "Изменить данные на сайте", color = Color.White)
-        }
     }
-}
-
-// Предпросмотр для визуализации в Android Studio
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BusinessCallScreen(username = "Ваше Имя")
 }

@@ -2,8 +2,10 @@ package com.example.gashkova_v_22
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,34 +37,28 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
 fun MainScreen() {
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var showPersonalArea by remember { mutableStateOf(false) } // состояние для переключения экранов
 
-    if (showPersonalArea) {
-        PersonalAreaScreen(onBackPress = { showPersonalArea = false }) // Показываем PersonalArea
-    } else {
-        MainContent(
-            login = login,
-            onLoginChange = { login = it },
-            password = password,
-            onPasswordChange = { password = it },
-            onLoginPress = { showPersonalArea = true } // При нажатии кнопки меняем состояние
-        )
-    }
+    MainContent(
+        login = login,
+        onLoginChange = { login = it },
+        password = password,
+        onPasswordChange = { password = it }
+    )
 }
-
 @Composable
 fun MainContent(
     login: String,
     onLoginChange: (String) -> Unit,
     password: String,
-    onPasswordChange: (String) -> Unit,
-    onLoginPress: () -> Unit
+    onPasswordChange: (String) -> Unit
 ) {
+    val context = LocalContext.current
+
+    // Основная колонка
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -70,12 +66,14 @@ fun MainContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        // Изображение
         Image(
             painter = painterResource(id = R.drawable.women),
             contentDescription = null,
             modifier = Modifier.height(186.dp).fillMaxWidth()
         )
 
+        // Поле для логина
         TextField(
             value = login,
             onValueChange = onLoginChange,
@@ -88,9 +86,10 @@ fun MainContent(
                     shape = RoundedCornerShape(16.dp)
                 )
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color.White),
+                .background(Color.White)
         )
 
+        // Поле для пароля
         TextField(
             value = password,
             onValueChange = onPasswordChange,
@@ -103,11 +102,16 @@ fun MainContent(
                     shape = RoundedCornerShape(16.dp)
                 )
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color.White),
+                .background(Color.White)
         )
 
+        // Кнопка для авторизации
         Button(
-            onClick = onLoginPress, // Переход на PersonalArea
+            onClick = {
+                // Переход на PersonalArea без передачи данных
+                val intent = Intent(context, PersonalArea::class.java)
+                context.startActivity(intent)
+            },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE30611)),
             modifier = Modifier
                 .fillMaxWidth()
@@ -118,21 +122,6 @@ fun MainContent(
         }
     }
 }
-
-@Composable
-fun PersonalAreaScreen(onBackPress: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-
-        }
-    }
-
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewMainScreen() {
